@@ -1,0 +1,1397 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CYPRUS BESPOKE - אחוזות פרטיות בקפריסין</title>
+    <meta name="description" content="איתור קרקעות נדירות, תכנון אדריכלי מותאם אישית ובנייה של אחוזות פרטיות באי קפריסין">
+
+    <!-- Google Fonts - Hebrew Support -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700&family=Heebo:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Assistant', 'Heebo', sans-serif;
+            background-color: #0F1115;
+            color: #E5E5E5;
+            direction: rtl;
+            text-align: right;
+        }
+
+        /* ========== SCROLL PROGRESS BAR ========== */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #C5A880, #D4AF37);
+            width: 0%;
+            z-index: 9999;
+            transition: width 0.1s ease;
+        }
+
+        /* ========== HERO SECTION ========== */
+        .hero-section {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 120%;
+            background: linear-gradient(135deg, rgba(15, 17, 21, 0.4) 0%, rgba(15, 17, 21, 0.6) 100%), url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=2000&q=80') center/cover no-repeat;
+            z-index: 1;
+            transform: translateY(0px);
+            will-change: transform;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px;
+            opacity: 1;
+            transition: opacity 0.6s ease;
+        }
+
+        .hero-headline {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 600;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            color: #E5E5E5;
+            animation: fadeInDown 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s both;
+        }
+
+        .hero-subheadline {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            font-weight: 300;
+            max-width: 800px;
+            margin: 0 auto 50px;
+            letter-spacing: 0.01em;
+            color: #C5A880;
+            line-height: 1.6;
+            animation: fadeInUp 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 16px 48px;
+            background-color: #C5A880;
+            color: #0F1115;
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 0.05em;
+            border: 2px solid #C5A880;
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            cursor: pointer;
+            text-decoration: none;
+            border-radius: 2px;
+            animation: fadeInUp 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) 0.7s both;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(15, 17, 21, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .cta-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .cta-button:hover {
+            background-color: transparent;
+            color: #C5A880;
+            transform: scale(1.05);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            z-index: 10;
+        }
+
+        .scroll-indicator svg {
+            width: 24px;
+            height: 24px;
+            stroke: #C5A880;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        /* ========== NAVIGATION ========== */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(15, 17, 21, 0.85);
+            backdrop-filter: blur(10px);
+            padding: 20px 40px;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(197, 168, 128, 0.1);
+            display: flex;
+            justify-content: flex-end;
+            gap: 40px;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            background-color: rgba(15, 17, 21, 0.95);
+            border-bottom-color: rgba(197, 168, 128, 0.3);
+            padding: 15px 40px;
+        }
+
+        nav a {
+            color: #C5A880;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: #D4AF37;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* ========== CONCEPT SECTION ========== */
+        .concept-section {
+            padding: 100px 40px;
+            background-color: #0F1115;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 600;
+            margin-bottom: 60px;
+            color: #E5E5E5;
+            letter-spacing: -0.02em;
+            text-align: center;
+            opacity: 0;
+            animation: fadeInUp 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .concept-image {
+            width: 100%;
+            height: 500px;
+            background: linear-gradient(135deg, rgba(197, 168, 128, 0.1) 0%, rgba(197, 168, 128, 0.05) 100%), url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1000&q=80') center/cover no-repeat;
+            border: 1px solid #C5A880;
+            transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+            opacity: 0;
+            animation: fadeInLeft 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .concept-image::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 60% 40%, rgba(212, 175, 55, 0.2), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+
+        .concept-image:hover::before {
+            opacity: 1;
+        }
+
+        .concept-image:hover {
+            transform: scale(1.03);
+        }
+
+        .concept-text {
+            opacity: 0;
+            animation: fadeInRight 1s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s forwards;
+        }
+
+        .concept-text h3 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+            color: #E5E5E5;
+            letter-spacing: -0.01em;
+        }
+
+        .concept-text p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #B0B0B0;
+            margin-bottom: 20px;
+            font-weight: 300;
+            transition: all 0.3s ease;
+        }
+
+        .concept-text p:hover {
+            color: #E5E5E5;
+            transform: translateX(-10px);
+        }
+
+        .concept-highlight {
+            color: #C5A880;
+            font-weight: 500;
+            position: relative;
+        }
+
+        .concept-highlight::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, #C5A880, #D4AF37, transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .concept-highlight:hover::after {
+            opacity: 1;
+        }
+
+        /* ========== ADVANTAGES SECTION ========== */
+        .advantages-section {
+            padding: 100px 40px;
+            background-color: #121418;
+        }
+
+        .advantages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .advantage-card {
+            background: linear-gradient(135deg, rgba(197, 168, 128, 0.08) 0%, rgba(197, 168, 128, 0.03) 100%);
+            border: 1px solid #C5A880;
+            padding: 50px 30px;
+            text-align: right;
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            animation: fadeInUp 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        .advantage-card:nth-child(1) { animation-delay: 0.15s; }
+        .advantage-card:nth-child(2) { animation-delay: 0.3s; }
+        .advantage-card:nth-child(3) { animation-delay: 0.45s; }
+
+        .advantage-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(197, 168, 128, 0.15), transparent);
+            transition: left 0.5s ease;
+            z-index: 1;
+        }
+
+        .advantage-card:hover::before {
+            left: 100%;
+        }
+
+        .advantage-card:hover {
+            transform: translateY(-15px);
+            border-color: #D4AF37;
+            background: linear-gradient(135deg, rgba(197, 168, 128, 0.15) 0%, rgba(197, 168, 128, 0.08) 100%);
+            box-shadow: 0 20px 50px rgba(197, 168, 128, 0.15);
+        }
+
+        .advantage-icon {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            display: inline-block;
+            transition: transform 0.3s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .advantage-card:hover .advantage-icon {
+            transform: scale(1.15) rotate(5deg);
+        }
+
+        .advantage-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #E5E5E5;
+            position: relative;
+            z-index: 2;
+        }
+
+        .advantage-card p {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #A8A8A8;
+            font-weight: 300;
+            position: relative;
+            z-index: 2;
+            transition: color 0.3s ease;
+        }
+
+        .advantage-card:hover p {
+            color: #E5E5E5;
+        }
+
+        /* ========== PORTFOLIO SECTION ========== */
+        .portfolio-section {
+            padding: 100px 40px;
+            background-color: #0F1115;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 1;
+            border: 1px solid #C5A880;
+            transition: all 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+            cursor: pointer;
+            opacity: 0;
+            animation: fadeInUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        .portfolio-item:nth-child(1) {
+            grid-column: span 2;
+            grid-row: span 1;
+            aspect-ratio: 2/1;
+            animation-delay: 0.1s;
+        }
+        .portfolio-item:nth-child(2) { animation-delay: 0.25s; }
+        .portfolio-item:nth-child(3) { animation-delay: 0.4s; }
+        .portfolio-item:nth-child(4) {
+            grid-column: span 2;
+            grid-row: span 1;
+            aspect-ratio: 2/1;
+            animation-delay: 0.55s;
+        }
+        .portfolio-item:nth-child(5) { animation-delay: 0.7s; }
+        .portfolio-item:nth-child(6) { animation-delay: 0.85s; }
+
+        @media (max-width: 768px) {
+            .portfolio-item:nth-child(1) { grid-column: span 1; aspect-ratio: 1; }
+            .portfolio-item:nth-child(4) { grid-column: span 1; aspect-ratio: 1; }
+        }
+
+        .portfolio-image {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+        }
+
+        .portfolio-item:hover .portfolio-image {
+            transform: scale(1.08) rotate(0.5deg);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(15, 17, 21, 0.8), rgba(197, 168, 128, 0.2));
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: flex-end;
+            padding: 30px;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            backdrop-filter: blur(2px);
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .portfolio-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #C5A880;
+            margin-bottom: 8px;
+            transform: translateY(20px);
+            transition: transform 0.4s ease 0.1s;
+        }
+
+        .portfolio-item:hover .portfolio-title {
+            transform: translateY(0);
+        }
+
+        .portfolio-category {
+            font-size: 0.9rem;
+            color: #A8A8A8;
+            font-weight: 300;
+            transform: translateY(20px);
+            transition: transform 0.4s ease 0.2s;
+        }
+
+        .portfolio-item:hover .portfolio-category {
+            transform: translateY(0);
+        }
+
+        /* ========== STATS COUNTER ========== */
+        .stats-section {
+            padding: 80px 40px;
+            background: linear-gradient(135deg, rgba(197, 168, 128, 0.08), rgba(197, 168, 128, 0.03));
+            border-top: 1px solid #C5A880;
+            border-bottom: 1px solid #C5A880;
+            margin: 60px 40px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .stat-item {
+            opacity: 0;
+            animation: fadeInUp 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        .stat-item:nth-child(1) { animation-delay: 0.15s; }
+        .stat-item:nth-child(2) { animation-delay: 0.3s; }
+        .stat-item:nth-child(3) { animation-delay: 0.45s; }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #C5A880;
+            margin-bottom: 10px;
+            counter-increment: stat-counter;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: #A8A8A8;
+            font-weight: 300;
+            letter-spacing: 0.05em;
+        }
+
+        /* ========== PROCESS SECTION ========== */
+        .process-section {
+            padding: 100px 40px;
+            background-color: #121418;
+        }
+
+        .process-timeline {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .process-step {
+            position: relative;
+            padding-right: 40px;
+            opacity: 0;
+            animation: fadeInUp 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        .process-step:nth-child(1) { animation-delay: 0.15s; }
+        .process-step:nth-child(2) { animation-delay: 0.3s; }
+        .process-step:nth-child(3) { animation-delay: 0.45s; }
+        .process-step:nth-child(4) { animation-delay: 0.6s; }
+
+        .process-step::before {
+            content: attr(data-step);
+            position: absolute;
+            top: 0;
+            right: -50px;
+            font-size: 4rem;
+            font-weight: 700;
+            color: rgba(197, 168, 128, 0.15);
+            z-index: 0;
+            transition: all 0.3s ease;
+        }
+
+        .process-step:hover::before {
+            color: rgba(197, 168, 128, 0.25);
+            font-size: 4.5rem;
+        }
+
+        .process-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background-color: transparent;
+            border: 2px solid #C5A880;
+            color: #C5A880;
+            font-weight: 700;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .process-step:hover .process-number {
+            background-color: #C5A880;
+            color: #0F1115;
+            transform: scale(1.15);
+            box-shadow: 0 0 20px rgba(197, 168, 128, 0.4);
+        }
+
+        .process-step h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #E5E5E5;
+            transition: color 0.3s ease;
+        }
+
+        .process-step:hover h3 {
+            color: #C5A880;
+        }
+
+        .process-step p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: #A8A8A8;
+            font-weight: 300;
+            transition: color 0.3s ease;
+        }
+
+        .process-step:hover p {
+            color: #E5E5E5;
+        }
+
+        /* ========== CONTACT SECTION ========== */
+        .contact-section {
+            padding: 100px 40px;
+            background-color: #0F1115;
+        }
+
+        .contact-container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .contact-intro {
+            text-align: center;
+            margin-bottom: 60px;
+            opacity: 0;
+            animation: fadeInUp 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        .contact-intro p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #A8A8A8;
+            font-weight: 300;
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+            opacity: 0;
+            animation: fadeInUp 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        .form-group:nth-child(1) { animation-delay: 0.1s; }
+        .form-group:nth-child(2) { animation-delay: 0.25s; }
+        .form-group:nth-child(3) { animation-delay: 0.4s; }
+        .form-group:nth-child(4) { animation-delay: 0.55s; }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #E5E5E5;
+            text-align: right;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 16px;
+            background-color: rgba(197, 168, 128, 0.05);
+            border: 1px solid #C5A880;
+            color: #E5E5E5;
+            font-family: 'Assistant', 'Heebo', sans-serif;
+            font-size: 0.95rem;
+            direction: rtl;
+            text-align: right;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+            position: relative;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #7A7A7A;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            background-color: rgba(197, 168, 128, 0.1);
+            border-color: #D4AF37;
+            box-shadow: 0 0 0 3px rgba(197, 168, 128, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .input-validation {
+            display: none;
+            font-size: 0.8rem;
+            margin-top: 5px;
+            padding: 5px 0;
+        }
+
+        .input-validation.success {
+            color: #4ade80;
+            display: block;
+        }
+
+        .input-validation.error {
+            color: #f87171;
+            display: block;
+        }
+
+        .privacy-note {
+            font-size: 0.85rem;
+            color: #7A7A7A;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: 300;
+            opacity: 0;
+            animation: fadeInUp 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) 0.65s forwards;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background-color: #C5A880;
+            color: #0F1115;
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 0.05em;
+            border: 2px solid #C5A880;
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border-radius: 2px;
+            font-family: 'Assistant', 'Heebo', sans-serif;
+            opacity: 0;
+            animation: fadeInUp 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) 0.7s forwards;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(15, 17, 21, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+            z-index: 0;
+        }
+
+        .submit-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .submit-btn:hover {
+            background-color: transparent;
+            color: #C5A880;
+            transform: scale(1.02);
+        }
+
+        .submit-btn:active {
+            transform: scale(0.98);
+        }
+
+        .submit-btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .form-success-message {
+            display: none;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(74, 222, 128, 0.1), rgba(34, 197, 94, 0.05));
+            border: 1px solid #4ade80;
+            border-radius: 2px;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #4ade80;
+            font-weight: 500;
+            animation: fadeInDown 0.5s ease-out;
+        }
+
+        /* ========== FOOTER ========== */
+        footer {
+            background-color: #0A0C10;
+            padding: 50px 40px;
+            text-align: center;
+            border-top: 1px solid #C5A880;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+            color: #7A7A7A;
+            font-weight: 300;
+        }
+
+        /* ========== ANIMATIONS ========== */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+                opacity: 0.8;
+            }
+            40% {
+                transform: translateX(-50%) translateY(-12px);
+                opacity: 1;
+            }
+            60% {
+                transform: translateX(-50%) translateY(-6px);
+                opacity: 0.9;
+            }
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(197, 168, 128, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(197, 168, 128, 0.6);
+            }
+        }
+
+        @keyframes slideInCounter {
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            .concept-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .process-timeline {
+                grid-template-columns: 1fr;
+            }
+
+            .concept-section,
+            .advantages-section,
+            .portfolio-section,
+            .process-section,
+            .contact-section {
+                padding: 60px 20px;
+            }
+
+            .section-title {
+                margin-bottom: 40px;
+            }
+
+            nav {
+                padding: 15px 20px;
+                gap: 20px;
+            }
+
+            nav a {
+                font-size: 0.8rem;
+            }
+
+            .hero-content {
+                padding: 20px;
+            }
+
+            .stats-section {
+                margin: 40px 20px;
+            }
+        }
+
+        /* ========== UTILITIES ========== */
+        .text-gradient {
+            background: linear-gradient(90deg, #C5A880, #D4AF37);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
+</head>
+<body>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress"></div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <a href="#hero">בית</a>
+        <a href="#concept">קונספט</a>
+        <a href="#advantages">יתרונות</a>
+        <a href="#portfolio">תיקייה</a>
+        <a href="#process">תהליך</a>
+        <a href="#contact">צור קשר</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+        <div class="hero-background" id="heroBackground"></div>
+        <div class="hero-content">
+            <h1 class="hero-headline">בית בקפריסין,<br>בדיוק לפי החזון שלך</h1>
+            <p class="hero-subheadline">איתור קרקעות נדירות (Off-Market), תכנון אדריכלי מותאם אישית ובנייה מאפס של אחוזות פרטיות באי</p>
+            <a href="#contact" class="cta-button"><span>תיאום שיחה דיסקרטית</span></a>
+            <div class="scroll-indicator">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- Concept Section -->
+    <section id="concept" class="concept-section">
+        <h2 class="section-title">הקונספט שלנו</h2>
+        <div class="concept-grid">
+            <div class="concept-image"></div>
+            <div class="concept-text">
+                <h3>אדריכלות פרטית וניהול מלא בשטח</h3>
+                <p>
+                    אנחנו מתמחים בזיהוי <span class="concept-highlight">קרקעות Off-Market</span> עם פוטנציאל גבוה בקפריסין, בשיתוף עם אדריכלים עולמיים מובילים.
+                </p>
+                <p>
+                    כל פרויקט הוא ייחודי: מתכנון אדריכלי מותאם אישית דרך <span class="concept-highlight">בנייה Turnkey</span>, אנחנו מנהלים את כל ההיבטים בדיסקרטיות מוחלטת.
+                </p>
+                <p>
+                    הרשת המקומית שלנו בקפריסין מבטיחה ביצוע ברמה הגבוהה ביותר ופיקוח קפדני בשטח, בכל שלב של הפרויקט.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Advantages Section -->
+    <section id="advantages" class="advantages-section">
+        <h2 class="section-title">היתרונות שלנו</h2>
+        <div class="advantages-grid">
+            <div class="advantage-card">
+                <div class="advantage-icon">🏝️</div>
+                <h3>גישה לנכסים שקטים</h3>
+                <p>
+                    אנחנו בעלי גישה בלעדית לקרקעות וחוות שאינן מוצעות בשוק הציבורי. הרשת שלנו מצטברת מדשורות שנים של עבודה מקומית אקסקלוסיבית.
+                </p>
+            </div>
+
+            <div class="advantage-card">
+                <div class="advantage-icon">🏛️</div>
+                <h3>תכנון ובנייה לפי מידה</h3>
+                <p>
+                    כל פרויקט תוכנן ובנוי על בסיס החזון הייחודי שלך. אנחנו עובדים עם אדריכלים בינלאומיים למימוש תכנית שתמשך עשרות שנים.
+                </p>
+            </div>
+
+            <div class="advantage-card">
+                <div class="advantage-icon">✨</div>
+                <h3>ניהול מלא בשטח</h3>
+                <p>
+                    שירות White-Glove: מ-Turnkey Management דרך עיון על ביצוע ניהול לוגיסטי, בחירת ספקים עד לדוח מעבר מלא ודיוק לחומר.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number" data-target="45">0</div>
+                <div class="stat-label">פרויקטים במימוש</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-target="2500">0</div>
+                <div class="stat-label">דונמים בפיתוח</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-target="98">0</div>
+                <div class="stat-label">שנות ניסיון משולבות</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio-section">
+        <h2 class="section-title">תיקיית הפרויקטים שלנו</h2>
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <div class="portfolio-image" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80')"></div>
+                <div class="portfolio-overlay">
+                    <div class="portfolio-title">אחוזה חופית פרטית</div>
+                    <div class="portfolio-category">בנייה מותאמת אישית</div>
+                </div>
+            </div>
+
+            <div class="portfolio-item">
+                <div class="portfolio-image" style="background-image: url('https://images.unsplash.com/photo-1600566753086-00f9fb0aae4e?w=1200&q=80')"></div>
+                <div class="portfolio-overlay">
+                    <div class="portfolio-title">בריכה אינסופית</div>
+                    <div class="portfolio-category">עיצוב נוף מדוקדק</div>
+                </div>
+            </div>
+
+            <div class="portfolio-item">
+                <div class="portfolio-image" style="background-image: url('https://images.unsplash.com/photo-1600121848371-bb4dc53f1590?w=1200&q=80')"></div>
+                <div class="portfolio-overlay">
+                    <div class="portfolio-title">סלון מעוצב בעיצוב רחב</div>
+                    <div class="portfolio-category">ריהוט פרימיום</div>
+                </div>
+            </div>
+
+            <div class="portfolio-item">
+                <div class="portfolio-image" style="background-image: url('https://images.unsplash.com/photo-1590736969955-71cc94901144?w=1200&q=80')"></div>
+                <div class="portfolio-overlay">
+                    <div class="portfolio-title">טרקלין חיצוני עם נוף ים</div>
+                    <div class="portfolio-category">עיצוב פנים וחוץ</div>
+                </div>
+            </div>
+
+            <div class="portfolio-item">
+                <div class="portfolio-image" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80')"></div>
+                <div class="portfolio-overlay">
+                    <div class="portfolio-title">קומה ראשית מפוארת</div>
+                    <div class="portfolio-category">אדריכלות מודרנית</div>
+                </div>
+            </div>
+
+            <div class="portfolio-item">
+                <div class="portfolio-image" style="background-image: url('https://images.unsplash.com/photo-1600566753086-00f9fb0aae4e?w=1200&q=80')"></div>
+                <div class="portfolio-overlay">
+                    <div class="portfolio-title">סוויטת שינה בעיצוב מינימליסטי</div>
+                    <div class="portfolio-category">פרטיות וביקום</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="process-section">
+        <h2 class="section-title">התהליך שלנו</h2>
+        <div class="process-timeline">
+            <div class="process-step" data-step="1">
+                <div class="process-number">1</div>
+                <h3>שיחת היכרות דיסקרטית</h3>
+                <p>
+                    נפגש ב-Confidentiality מוחלטת. אנחנו מבינים את החזון שלך, את הצרכים שלך, ואת ההעדפות הגיאוגרפיות ואדריכליות.
+                </p>
+            </div>
+
+            <div class="process-step" data-step="2">
+                <div class="process-number">2</div>
+                <h3>איתור קרקע ותכנון</h3>
+                <p>
+                    אנחנו מחפשים את הנכס המושלם עבור החזון שלך ומתחילים עם תכנון אדריכלי ראשוני בשיתוף עם צוותי אדריכלים עולמיים.
+                </p>
+            </div>
+
+            <div class="process-step" data-step="3">
+                <div class="process-number">3</div>
+                <h3>ביצוע ופיקוח בשטח</h3>
+                <p>
+                    בנייה חדשה עם Turnkey Management מלא. הצוות שלנו משתף שלומים יומיים, דוחות התקדמות ותכנון של כל שלב בעבודה.
+                </p>
+            </div>
+
+            <div class="process-step" data-step="4">
+                <div class="process-number">4</div>
+                <h3>מסירת מפתח</h3>
+                <p>
+                    דוח סגירה מלא, עיון פרטני, מעבר סמכויות דיגיטליות וניהול מתמשך לתיחזוקה וכל צרך חוזר בעתיד.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <h2 class="section-title">צור קשר</h2>
+        <div class="contact-container">
+            <div class="contact-intro">
+                <p>התחל את שיחתך עם הצוות שלנו. כל המידע שלך יישמר בסודיות מוחלטת.</p>
+            </div>
+
+            <div class="form-success-message" id="successMessage">
+                הודתך נשלחה בהצלחה! נחזור אליך בהקדם האפשרי.
+            </div>
+
+            <form id="contactForm" name="contact">
+                <div class="form-group">
+                    <label for="name">שם מלא</label>
+                    <input type="text" id="name" name="name" placeholder="השם שלך" required>
+                    <div class="input-validation" id="nameValidation"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">כתובת דוא״ל</label>
+                    <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                    <div class="input-validation" id="emailValidation"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">טלפון</label>
+                    <input type="tel" id="phone" name="phone" placeholder="+357 XXXX XXXX" required>
+                    <div class="input-validation" id="phoneValidation"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">הערות קצרות</label>
+                    <textarea id="message" name="message" placeholder="שתף את החזון שלך, תקציב משוער, משך זמן או כל פרט רלוונטי..." required></textarea>
+                    <div class="input-validation" id="messageValidation"></div>
+                </div>
+
+                <div class="privacy-note">
+                    פרטיך יישמרו בסודיות מוחלטת ולא ישותפו עם צדדים שלישיים.
+                </div>
+
+                <button type="submit" class="submit-btn"><span>לתיאום שיחה אישית</span></button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 CYPRUS BESPOKE. כל הזכויות שמורות. | דיסקרטיות וסודיות מוחלטת</p>
+    </footer>
+
+    <script>
+        // ========== SCROLL PROGRESS BAR ==========
+        const scrollProgress = document.querySelector('.scroll-progress');
+        window.addEventListener('scroll', () => {
+            const windowHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrolled = (window.scrollY / windowHeight) * 100;
+            scrollProgress.style.width = scrolled + '%';
+        });
+
+        // ========== PARALLAX SCROLLING ==========
+        const heroBackground = document.getElementById('heroBackground');
+        window.addEventListener('scroll', () => {
+            const scrollPosition = window.scrollY;
+            heroBackground.style.transform = `translateY(${scrollPosition * 0.5}px)`;
+        });
+
+        // ========== NAVIGATION SCROLL EFFECT ==========
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // ========== SMOOTH SCROLL ==========
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && document.querySelector(href)) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // ========== ANIMATED COUNTER ==========
+        const animateCounter = (element, target) => {
+            let current = 0;
+            const increment = target / 30;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target.toLocaleString('he-IL');
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current).toLocaleString('he-IL');
+                }
+            }, 50);
+        };
+
+        // Intersection Observer for Counters
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const target = parseInt(entry.target.getAttribute('data-target'));
+                    animateCounter(entry.target, target);
+                    counterObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.stat-number').forEach(el => {
+            counterObserver.observe(el);
+        });
+
+        // ========== FORM VALIDATION ==========
+        const contactForm = document.getElementById('contactForm');
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+        const phoneInput = document.getElementById('phone');
+        const messageInput = document.getElementById('message');
+        const successMessage = document.getElementById('successMessage');
+
+        const showValidation = (input, isValid, message) => {
+            const validationEl = document.getElementById(input.id + 'Validation');
+            if (isValid) {
+                validationEl.className = 'input-validation success';
+                validationEl.textContent = '✓ '+ message;
+            } else {
+                validationEl.className = 'input-validation error';
+                validationEl.textContent = '✗ ' + message;
+            }
+        };
+
+        nameInput.addEventListener('blur', () => {
+            const isValid = nameInput.value.trim().length >= 3;
+            showValidation(nameInput, isValid, isValid ? 'שם תקין' : 'הזן שם של 3 תווים לפחות');
+        });
+
+        emailInput.addEventListener('blur', () => {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const isValid = emailRegex.test(emailInput.value.trim());
+            showValidation(emailInput, isValid, isValid ? 'דוא״ל תקין' : 'הזן דוא״ל תקין');
+        });
+
+        phoneInput.addEventListener('blur', () => {
+            const phoneRegex = /^[\d+\s\-()]+$/;
+            const isValid = phoneInput.value.trim().length >= 9 && phoneRegex.test(phoneInput.value);
+            showValidation(phoneInput, isValid, isValid ? 'טלפון תקין' : 'הזן מספר טלפון תקין');
+        });
+
+        messageInput.addEventListener('blur', () => {
+            const isValid = messageInput.value.trim().length >= 10;
+            showValidation(messageInput, isValid, isValid ? 'הודעה תקינה' : 'הזן הודעה של לפחות 10 תווים');
+        });
+
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = nameInput.value.trim();
+            const email = emailInput.value.trim();
+            const phone = phoneInput.value.trim();
+            const message = messageInput.value.trim();
+
+            // Validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const phoneRegex = /^[\d+\s\-()]+$/;
+
+            if (!name || name.length < 3) {
+                alert('אנא הזן שם תקין');
+                return;
+            }
+            if (!emailRegex.test(email)) {
+                alert('אנא הזן כתובת דוא״ל תקינה');
+                return;
+            }
+            if (!phone || phone.length < 9 || !phoneRegex.test(phone)) {
+                alert('אנא הזן מספר טלפון תקין');
+                return;
+            }
+            if (!message || message.length < 10) {
+                alert('אנא הזן הודעה של לפחות 10 תווים');
+                return;
+            }
+
+            // Show success message
+            successMessage.style.display = 'block';
+            contactForm.style.opacity = '0.5';
+            contactForm.style.pointerEvents = 'none';
+
+            // Reset form after delay
+            setTimeout(() => {
+                contactForm.reset();
+                contactForm.style.opacity = '1';
+                contactForm.style.pointerEvents = 'auto';
+                document.querySelectorAll('.input-validation').forEach(el => {
+                    el.className = 'input-validation';
+                    el.textContent = '';
+                });
+
+                setTimeout(() => {
+                    successMessage.style.display = 'none';
+                }, 5000);
+            }, 2000);
+        });
+
+        // ========== FADE-IN ON SCROLL ==========
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                }
+            });
+        }, observerOptions);
+
+        // ========== MOUSE TRACKING FOR HERO ==========
+        const heroContent = document.querySelector('.hero-content');
+        document.addEventListener('mousemove', (e) => {
+            if (window.scrollY < window.innerHeight) {
+                const x = (e.clientX / window.innerWidth - 0.5) * 10;
+                const y = (e.clientY / window.innerHeight - 0.5) * 10;
+                heroBackground.style.transform = `translateY(${window.scrollY * 0.5}px) translate(${x}px, ${y}px)`;
+            }
+        });
+
+        // ========== INTERSECTION OBSERVER FOR ANIMATIONS ==========
+        const animationObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.section-title, .concept-image, .advantage-card, .portfolio-item, .process-step, .form-group').forEach(el => {
+            animationObserver.observe(el);
+        });
+    </script>
+</body>
+</html>
